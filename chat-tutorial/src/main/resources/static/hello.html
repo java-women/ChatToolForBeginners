@@ -11,9 +11,13 @@
 </div>
 <div>
     <input type="text" id="name" placeholder="Your Name">
+</div>
+<div>
+    <input type="text" id="message" placeholder="message">
     <button id="send" disabled="disabled">Send</button>
     <div id="response"></div>
 </div>
+
 </body>
 <script src="stomp.js"></script>
 <script type="text/javascript">
@@ -45,13 +49,16 @@
      */
     HelloStomp.prototype.onConnected = function (frame) {
         console.log('Connected: ' + frame);
-        // 宛先が'/topic/greetings'のメッセージを購読し、コールバック処理を登録
-        this.stompClient.subscribe('/topic/greetings', this.onSubscribeGreeting.bind(this));
+        // 宛先が'/topic/messages'のメッセージを購読し、コールバック処理を登録
+        this.stompClient.subscribe('/topic/messages', this.onSubscribeGreeting.bind(this));
         this.setConnected(true);
+        
+        var name = document.getElementById('name').value;
+        this.stompClient.send('/app/connect', {}, name);
     };
 
     /**
-     * 宛先'/topic/greetings'なメッセージを受信したときの処理
+     * 宛先'/topic/messages'なメッセージを受信したときの処理
      */
     HelloStomp.prototype.onSubscribeGreeting = function (message) {
         var response = document.getElementById('response');
@@ -61,11 +68,12 @@
     };
 
     /**
-     * 宛先'/app/greet'へのメッセージ送信処理
+     * 宛先'/app/message'へのメッセージ送信処理
      */
     HelloStomp.prototype.sendName = function () {
         var name = document.getElementById('name').value;
-        this.stompClient.send('/app/greet', {}, name); // 宛先'/app/greet'へメッセージを送信
+        var message = document.getElementById('message').value;
+        this.stompClient.send('/app/message', {}, name+"："+message);  // 宛先'/app/message'へメッセージを送信
     };
 
     /**
