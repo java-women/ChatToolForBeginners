@@ -15,9 +15,9 @@ import org.springframework.web.socket.config.annotation.*;
 @SpringBootApplication
 @RestController
 public class App {
-	
-	private static final Logger log = LoggerFactory.getLogger(App.class);
-	
+
+    private static final Logger log = LoggerFactory.getLogger(App.class);
+
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
@@ -26,7 +26,7 @@ public class App {
     String hello() {
         return "Hello World!";
     }
-    
+
     @Configuration
     @EnableWebSocketMessageBroker // WebSocketに関する設定クラス
     static class StompConfig extends AbstractWebSocketMessageBrokerConfigurer {
@@ -42,18 +42,18 @@ public class App {
             registry.enableSimpleBroker("/topic"); // queueまたはtopicを有効にする(両方可)。queueは1対1(P2P)、topicは1対多(Pub-Sub)
         }
     }
-    
+
     @MessageMapping(value = "/message" /* 宛先名 */) // Controller内の@MessageMappingアノテーションをつけたメソッドが、メッセージを受け付ける
     @SendTo(value = "/topic/messages") // 処理結果の送り先
     String greet(String message) {
-    log.info("received {}", message);
-    return message;
+        log.info("received {}", message);
+        return message;
     }
 
-    @MessageMapping(value = "/connect" ) 
+    @MessageMapping(value = "/connect" )
     @SendTo(value = "/topic/messages") // 処理結果の送り先
     String connect(String name) {
-    log.info("connect {}", name);
-    return name + "さんが接続しました。";
+        log.info("connect {}", name);
+        return name + "さんが接続しました。";
     }
 }
