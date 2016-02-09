@@ -1,6 +1,0 @@
-FROM dockerfile/java:oracle-java8
-
-ADD javajo-chat.jar /opt/javajo-chat/
-EXPOSE 8080
-WORKDIR /opt/javajo-chat/
-CMD ["java", "-Xms512m", "-Xmx1g", "-jar", "javajo-chat.jar"]
