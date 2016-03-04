@@ -79,7 +79,7 @@
         var name = document.getElementById('name').value;
         if (!name) name = EMPTY_NAME;
         var message = document.getElementById('message').value;
-        this.stompClient.send('/app/message', {}, name+"："+message);  // 宛先'/app/message'へメッセージを送信
+        this.stompClient.send('/app/message', {}, name + "：" + message);  // 宛先'/app/message'へメッセージを送信
     };
 
     /**
