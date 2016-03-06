@@ -1,0 +1,79 @@
+/*画面全体の設定*/
+html {
+	height: 100%;
+}
+body {
+	/*背景*/
+	background-color: #FFE4E1;
+	background-image: url(../img/javajo_log_skeleton.png);
+	background-repeat: no-repeat;
+	background-position: center;
+	/*画面サイズ*/
+	width: 100%;
+	height: 100%;
+	margin: auto;
+}
+/*ヘッダー*/
+div#header{
+	position: fixed; 
+	top:10px;
+	right:30px;
+	text-align:right;
+	width: 100%;
+}
+
+/*メッセージ表示エリア　全体*/
+div#response{
+	height: 90%;
+	width: 100%;
+	overflow-y: scroll;
+	position: fixed;
+	left:20px;
+	top:30px; 
+	bottom:30px; 
+}
+
+/*フッター(メッセージ入力エリア)*/
+div#inputArea {
+	position: fixed; 
+	bottom:10px;
+	text-align:center;
+	width: 100%;
+}
+
+/*メッセージ表示（吹き出し）*/
+.left_balloon {
+    position: relative;
+    background: #fff;
+    border: 1px solid #777;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    margin-right: 20%;
+    clear: both;
+    max-width: 500px;
+    float: left;
+}
+.left_balloon:after,
+.left_balloon:before {
+    right: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.left_balloon:after {
+    border-color: rgba(255, 255, 255, 0);
+    border-right-color: #fff;
+    border-width: 7px;
+    margin-top: -7px;
+}
+.left_balloon:before {
+    border-color: rgba(0, 0, 0, 0);
+    border-right-color: #000;
+    border-width: 8px;
+    margin-top: -8px;
+}
