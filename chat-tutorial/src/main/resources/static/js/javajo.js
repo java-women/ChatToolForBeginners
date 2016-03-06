@@ -31,10 +31,6 @@ HelloStomp.prototype.onConnected = function (frame) {
     // 宛先が'/topic/messages'のメッセージを購読し、コールバック処理を登録
     this.stompClient.subscribe('/topic/messages', this.onSubscribeGreeting.bind(this));
     this.setConnected(true);
-    
-    var name = document.getElementById('name').value;
-    if (!name) name = EMPTY_NAME;
-    this.stompClient.send('/app/connect', {}, name);
 };
 
 /**
@@ -42,18 +38,23 @@ HelloStomp.prototype.onConnected = function (frame) {
  */
 HelloStomp.prototype.onSubscribeGreeting = function (message) {
 	
-	var name = document.getElementById('name').value;
-    if (!name) name = EMPTY_NAME;
+	s = message.body.split("：");
 	
-    var response = document.getElementById('response');
-
+    var response = document.getElementById('response'); 
     var p = document.createElement('p');
-    p.appendChild(document.createTextNode(name.body));
-    
-    var p = document.createElement('p');
-    p.classList.add('left_balloon');
-    p.appendChild(document.createTextNode(message.body));
+    p.classList.add('talk-area');
     response.appendChild(p);
+    
+    var name_span = document.createElement('span');
+    name_span.classList.add('talk-name');
+    name_span.appendChild(document.createTextNode(s[0]));
+    p.appendChild(name_span);
+    
+    var message_span = document.createElement('span');
+    message_span.classList.add('talk-content');
+
+    message_span.appendChild(document.createTextNode(s[1]));
+    p.appendChild(message_span);
     
     /** スクロールを一番下に **/
     var scrollHeight = document.getElementById("response").scrollHeight;
@@ -65,7 +66,9 @@ HelloStomp.prototype.onSubscribeGreeting = function (message) {
  */
 HelloStomp.prototype.sendName = function () {
     var message = document.getElementById('message').value;
-    this.stompClient.send('/app/message', {}, message);  // 宛先'/app/message'へメッセージを送信
+    var name = document.getElementById('name').value;
+    if (!name) name = EMPTY_NAME;
+    this.stompClient.send('/app/message', {}, name+"："+message);  // 宛先'/app/message'へメッセージを送信
 };
 
 /**

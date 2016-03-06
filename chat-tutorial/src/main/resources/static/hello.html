@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="header">
-	<button id="disconnect" disabled="disabled">Disconnect</button>
+	<button id="disconnect" class="button" disabled="disabled">Disconnect</button>
 </div>
 <!--メッセージ -->
 <div id="response"></div>
@@ -17,16 +17,13 @@
 <div>
 	<!--ログイン画面できたらなくなる予定　ここから -->
 	<input type="text" id="name" placeholder="Your Name">
-	<button id="connect">Connect</button>
+	<button id="connect" class="button">Connect</button>
 	<!--ログイン画面できたらなくなる予定　ここまで -->  
     <input type="text" id="message" placeholder="message">
-    <button id="send" disabled="disabled">Send</button>
+    <button id="send" class="button" disabled="disabled">Send</button>
 </div>
 </div>
 </body>
 <script src="./js/stomp.js"></script>
 <script src="./js/javajo.js"></script>
-<script type="text/javascript">
-    const EMPTY_NAME = "ななし";
-</script>
 </html>
