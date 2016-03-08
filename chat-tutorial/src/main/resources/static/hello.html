@@ -95,8 +95,12 @@
     /**
      * 接続切断処理
      */
-    HelloStomp.prototype.disconnect = function () {
+    HelloStomp.prototype.disconnect = function () {    	
         if (this.stompClient) {
+        	var name = document.getElementById('name').value;
+        	if (!name) name = EMPTY_NAME; // ななしさん退出対応
+        	this.stompClient.send('/app/message', {}, name+"さんが退室しました");
+
             this.stompClient.disconnect();
             this.stompClient = null;
         }

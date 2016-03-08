@@ -29,7 +29,7 @@ public class App {
 
     @Configuration
     @EnableWebSocketMessageBroker // WebSocketに関する設定クラス
-    static class StompConfig extends AbstractWebSocketMessageBrokerConfigurer {
+    public static class StompConfig extends AbstractWebSocketMessageBrokerConfigurer {
 
         @Override
         public void registerStompEndpoints(StompEndpointRegistry registry) {
