@@ -34,8 +34,7 @@ HelloStomp.prototype.onConnected = function (frame) {
 };
 
 /**
- * 宛先'/topic/messages'なメッセージを受信したときの処理
- * 受信したメッセージを元に、
+ * 受信したメッセージを画面に表示する処理
  */
 HelloStomp.prototype.onSubscribeGreeting = function (message) {
 	
