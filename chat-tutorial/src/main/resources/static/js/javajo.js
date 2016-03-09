@@ -1,4 +1,4 @@
-const EMPTY_NAME = "ななし";
+const EMPTY_NAME = 'ななし';
 
 /**
  * 初期化処理
@@ -35,10 +35,12 @@ HelloStomp.prototype.onConnected = function (frame) {
 
 /**
  * 宛先'/topic/messages'なメッセージを受信したときの処理
+ * 受信したメッセージを元に、
  */
 HelloStomp.prototype.onSubscribeGreeting = function (message) {
 	
-	s = message.body.split("：");
+	// 名前:messageを分解
+	s = message.body.split('：');
 	
     var response = document.getElementById('response'); 
     var p = document.createElement('p');
@@ -57,18 +59,18 @@ HelloStomp.prototype.onSubscribeGreeting = function (message) {
     p.appendChild(message_span);
     
     /** スクロールを一番下に **/
-    var scrollHeight = document.getElementById("response").scrollHeight;
-    document.getElementById("response").scrollTop = scrollHeight;
+    var scrollHeight = document.getElementById('response').scrollHeight;
+    document.getElementById('response').scrollTop = scrollHeight;
 };
 
 /**
  * 宛先'/app/message'へのメッセージ送信処理
  */
 HelloStomp.prototype.sendName = function () {
-    var message = document.getElementById('message').value;
     var name = document.getElementById('name').value;
     if (!name) name = EMPTY_NAME;
-    this.stompClient.send('/app/message', {}, name+"："+message);  // 宛先'/app/message'へメッセージを送信
+    // 宛先'/app/message'へメッセージを送信
+    this.stompClient.send('/app/message', {}, name + '：' + document.getElementById('message').value);  
 };
 
 /**
