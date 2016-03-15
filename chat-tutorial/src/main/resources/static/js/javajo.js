@@ -7,11 +7,13 @@ var HelloStomp = function () {
     this.connectButton = document.getElementById('connect');
     this.disconnectButton = document.getElementById('disconnect');
     this.sendButton = document.getElementById('send');
+    this.messageText = document.getElementById('message');
 
     // イベントハンドラの登録
     this.connectButton.addEventListener('click', this.connect.bind(this));
     this.disconnectButton.addEventListener('click', this.disconnect.bind(this));
     this.sendButton.addEventListener('click', this.sendName.bind(this));
+    this.messageText.addEventListener('input', this.changeMessage.bind(this));
 };
 
 /**
@@ -73,6 +75,15 @@ HelloStomp.prototype.sendName = function () {
 };
 
 /**
+* メッセージ入力に応じた送信ボタン表示の切り替え
+*/
+HelloStomp.prototype.changeMessage = function () {
+    var message = document.getElementById('message').value || '';
+    var connected = this.connectButton.disabled;
+    this.canSubmit(connected && message.length > 0);
+};
+
+/**
  * 接続切断処理
  */
 HelloStomp.prototype.disconnect = function () {
@@ -84,12 +95,19 @@ HelloStomp.prototype.disconnect = function () {
 };
 
 /**
- * ボタン表示の切り替え
+ * 有効/無効切り替え
  */
 HelloStomp.prototype.setConnected = function (connected) {
     this.connectButton.disabled = connected;
     this.disconnectButton.disabled = !connected;
-    this.sendButton.disabled = !connected;
+    this.changeMessage();
+};
+
+/**
+* 送信ボタン有効/無効切り替え
+*/
+HelloStomp.prototype.canSubmit = function (enabled) {
+    this.sendButton.disabled = !enabled;
 };
 
 new HelloStomp();
