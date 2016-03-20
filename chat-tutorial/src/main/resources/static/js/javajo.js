@@ -13,7 +13,7 @@ var HelloStomp = function () {
     this.connectButton.addEventListener('click', this.connect.bind(this));
     this.disconnectButton.addEventListener('click', this.disconnect.bind(this));
     this.sendButton.addEventListener('click', this.sendName.bind(this));
-    this.messageText.addEventListener('input', this.changeMessage.bind(this));
+    this.messageText.addEventListener('input', this.setSendableStatus.bind(this));
 };
 
 /**
@@ -77,7 +77,7 @@ HelloStomp.prototype.sendName = function () {
 /**
 * メッセージ入力に応じた送信ボタン表示の切り替え
 */
-HelloStomp.prototype.changeMessage = function () {
+HelloStomp.prototype.setSendableStatus = function () {
     var message = document.getElementById('message').value || '';
     var connected = this.connectButton.disabled;
     this.canSubmit(connected && message.length > 0);
@@ -100,7 +100,7 @@ HelloStomp.prototype.disconnect = function () {
 HelloStomp.prototype.setConnected = function (connected) {
     this.connectButton.disabled = connected;
     this.disconnectButton.disabled = !connected;
-    this.changeMessage();
+    this.setSendableStatus();
 };
 
 /**
