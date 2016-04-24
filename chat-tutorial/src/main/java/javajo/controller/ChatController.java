@@ -14,7 +14,7 @@ import javajo.App;
 @RestController
 public class ChatController {
 	
-    private static final Logger log = LoggerFactory.getLogger(App.class);
+    private static final Logger log = LoggerFactory.getLogger(ChatController.class);
 	
 
     @MessageMapping(value = "/message" /* 宛先名 */) // Controller内の@MessageMappingアノテーションをつけたメソッドが、メッセージを受け付ける
