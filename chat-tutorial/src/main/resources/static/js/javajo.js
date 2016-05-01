@@ -39,10 +39,10 @@ HelloStomp.prototype.onConnected = function (frame) {
  * 受信したメッセージを画面に表示する処理
  */
 HelloStomp.prototype.onSubscribeGreeting = function (message) {
-	
-	// 名前:messageを分解
-	s = message.body.split('：');
-	
+    
+    // 名前:messageを分解
+    s = message.body.split('：');
+    
     var response = document.getElementById('response'); 
     var p = document.createElement('p');
     p.classList.add('talk-area');
