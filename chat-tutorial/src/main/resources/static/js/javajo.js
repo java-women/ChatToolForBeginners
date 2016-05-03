@@ -3,7 +3,7 @@ const EMPTY_NAME = 'ななし';
 /**
  * 初期化処理
  */
-var HelloStomp = function () {
+var ChatStomp = function () {
     this.connectButton = document.getElementById('connect');
     this.disconnectButton = document.getElementById('disconnect');
     this.sendButton = document.getElementById('send');
@@ -19,7 +19,7 @@ var HelloStomp = function () {
 /**
  * エンドポイントへの接続処理
  */
-HelloStomp.prototype.connect = function () {
+ChatStomp.prototype.connect = function () {
     var socket = new WebSocket('ws://' + location.host + '/endpoint'); // エンドポイントのURL
     this.stompClient = Stomp.over(socket); // WebSocketを使ったStompクライアントを作成
     this.stompClient.connect({}, this.onConnected.bind(this)); // エンドポイントに接続し、接続した際のコールバックを登録
@@ -28,7 +28,7 @@ HelloStomp.prototype.connect = function () {
 /**
  * エンドポイントへ接続したときの処理
  */
-HelloStomp.prototype.onConnected = function (frame) {
+ChatStomp.prototype.onConnected = function (frame) {
     console.log('Connected: ' + frame);
     // 宛先が'/topic/messages'のメッセージを購読し、コールバック処理を登録
     this.stompClient.subscribe('/topic/messages', this.onSubscribeGreeting.bind(this));
@@ -38,7 +38,7 @@ HelloStomp.prototype.onConnected = function (frame) {
 /**
  * 受信したメッセージを画面に表示する処理
  */
-HelloStomp.prototype.onSubscribeGreeting = function (message) {
+ChatStomp.prototype.onSubscribeGreeting = function (message) {
     
     // 名前:messageを分解
     s = message.body.split('：');
@@ -67,7 +67,7 @@ HelloStomp.prototype.onSubscribeGreeting = function (message) {
 /**
  * 宛先'/app/message'へのメッセージ送信処理
  */
-HelloStomp.prototype.sendName = function () {
+ChatStomp.prototype.sendName = function () {
     var name = document.getElementById('name').value;
     if (!name) name = EMPTY_NAME;
     // 宛先'/app/message'へメッセージを送信
@@ -77,7 +77,7 @@ HelloStomp.prototype.sendName = function () {
 /**
 * メッセージ入力に応じた送信ボタン表示の切り替え
 */
-HelloStomp.prototype.setSendableStatus = function () {
+ChatStomp.prototype.setSendableStatus = function () {
     var message = document.getElementById('message').value || '';
     var connected = this.connectButton.disabled;
     this.canSubmit(connected && message.length > 0);
@@ -86,7 +86,7 @@ HelloStomp.prototype.setSendableStatus = function () {
 /**
  * 接続切断処理
  */
-HelloStomp.prototype.disconnect = function () {
+ChatStomp.prototype.disconnect = function () {
     if (this.stompClient) {
         this.stompClient.disconnect();
         this.stompClient = null;
@@ -97,7 +97,7 @@ HelloStomp.prototype.disconnect = function () {
 /**
  * 有効/無効切り替え
  */
-HelloStomp.prototype.setConnected = function (connected) {
+ChatStomp.prototype.setConnected = function (connected) {
     this.connectButton.disabled = connected;
     this.disconnectButton.disabled = !connected;
     this.setSendableStatus();
@@ -106,8 +106,8 @@ HelloStomp.prototype.setConnected = function (connected) {
 /**
 * 送信ボタン有効/無効切り替え
 */
-HelloStomp.prototype.canSubmit = function (enabled) {
+ChatStomp.prototype.canSubmit = function (enabled) {
     this.sendButton.disabled = !enabled;
 };
 
-new HelloStomp();
+new ChatStomp();
