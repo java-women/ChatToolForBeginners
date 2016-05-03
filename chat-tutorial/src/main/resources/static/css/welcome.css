@@ -1,0 +1,19 @@
+body {
+    background-image: none;
+}
+
+button.button {
+    width: 160px;
+}
+
+#center-container {
+    text-align: center;
+    position: relative;
+    top: 38%;
+}
+
+#welcome {
+    font-size: 160%;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
