@@ -5,14 +5,17 @@ html {
 body {
     /*背景*/
     background-color: #FFE4E1;
-    background-image: url(../img/javajo_logo_skeleton.png);
+}
+
+/*背景画像*/
+#background-img {
+    background-image: url(../img/javajo_logo.png);
     background-repeat: no-repeat;
     background-position: center;
-    /*画面サイズ*/
-    width: 100%;
-    height: 100%;
-    margin: auto;
+    opacity: 0.5;
+    margin-top: -5%;
 }
+
 /*ヘッダー*/
 div#header {
     position: fixed;

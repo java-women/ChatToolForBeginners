@@ -111,3 +111,10 @@ ChatStomp.prototype.canSubmit = function (enabled) {
 };
 
 new ChatStomp();
+
+window.onload = function() {
+    document.getElementById('background-img').style.height = window.innerHeight + "px";
+}
+window.onresize = function() {
+    document.getElementById('background-img').style.height = window.innerHeight + "px";
+}
