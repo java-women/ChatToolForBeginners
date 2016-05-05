@@ -7,15 +7,6 @@ body {
     background-color: #FFE4E1;
 }
 
-/*背景画像*/
-#background-img {
-    background-image: url(../img/javajo_logo.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.5;
-    margin-top: -5%;
-}
-
 /*ヘッダー*/
 div#header {
     position: fixed;
@@ -100,4 +91,17 @@ button.button:disabled {
     content: '';
     border: 10px solid transparent;
     border-right-color: #fff;
+}
+
+/*背景画像*/
+.transparent {
+    opacity: 0.5;
+}
+.center-img {
+  position: absolute;
+  top: -30px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
 }
