@@ -41,7 +41,6 @@ ChatStomp.prototype.onConnected = function (frame) {
 ChatStomp.prototype.onSubscribeGreeting = function (message) {
     
     // 名前:messageを分解
-    s = message.body.split('：');
     
     var response = document.getElementById('response'); 
     var p = document.createElement('p');
@@ -50,13 +49,13 @@ ChatStomp.prototype.onSubscribeGreeting = function (message) {
     
     var name_span = document.createElement('span');
     name_span.classList.add('talk-name');
-    name_span.appendChild(document.createTextNode(s[0]));
+    name_span.appendChild(document.createTextNode(JSON.parse(message.body).name));
     p.appendChild(name_span);
     
     var message_span = document.createElement('span');
     message_span.classList.add('talk-content');
 
-    message_span.appendChild(document.createTextNode(s[1]));
+    message_span.appendChild(document.createTextNode(JSON.parse(message.body).message));
     p.appendChild(message_span);
     
     /** スクロールを一番下に **/
@@ -70,8 +69,9 @@ ChatStomp.prototype.onSubscribeGreeting = function (message) {
 ChatStomp.prototype.sendName = function () {
     var name = document.getElementById('name').value;
     if (!name) name = EMPTY_NAME;
-    // 宛先'/app/message'へメッセージを送信
-    this.stompClient.send('/app/message', {}, name + '：' + document.getElementById('message').value);  
+    // 宛先'/app/message'へメッセージをjson形式で送信
+    var json_message = {name: name, message: document.getElementById('message').value};
+    this.stompClient.send("/app/message", {}, JSON.stringify(json_message));     
 };
 
 /**

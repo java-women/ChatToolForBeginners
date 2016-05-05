@@ -6,22 +6,26 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.RestController;
 
-import javajo.App;
+import javajo.form.ChatForm;
 
 /**
- * チャットコントローラークラス
+ * チャットコントローラークラスです
  */
 @RestController
 public class ChatController {
 	
     private static final Logger log = LoggerFactory.getLogger(ChatController.class);
 	
-
-    @MessageMapping(value = "/message" /* 宛先名 */) // Controller内の@MessageMappingアノテーションをつけたメソッドが、メッセージを受け付ける
+    /**
+     * メッセージを受付し、/topic/messagesにメッセージを送信するメソッドです
+     * @param chatForm 接続者名とメッセージ(json形式)
+     * @return chatForm 接続者名とメッセージ(json形式)
+     */
+    @MessageMapping(value = "/message" /* 宛先名 */)
     @SendTo(value = "/topic/messages") // 処理結果の送り先
-    String greet(String message) {
-        log.info("received {}", message);
-        return message;
+    ChatForm greet(ChatForm chatForm) {
+        log.info("received {}", chatForm.getMessage());
+        return chatForm;
     }
 
     @MessageMapping(value = "/connect" )
