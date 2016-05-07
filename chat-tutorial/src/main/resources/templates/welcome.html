@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8" />
+    <title>ログイン成功</title>
+    <link rel="stylesheet" type="text/css" href="./css/javajo.css" />
+    <link rel="stylesheet" type="text/css" href="./css/welcome.css" />
+</head>
+<body>
+    <div id="center-container">
+        <form th:action="@{/logout}" method="post">
+            <input type="submit" value="Logout"/>
+        </form>
+        <hr />
+        <div id="welcome" th:inline="text">ようこそ[[${#httpServletRequest.remoteUser}]]さん</div>
+        <button class="button" onclick="location.href='./chat.html'">チャットツールへ</button>
+    </div>
+</body>
+</html>
