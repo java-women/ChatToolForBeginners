@@ -1,19 +1,23 @@
-body {
-    background-image: none;
-}
-
-button.button {
+/* ボタン */
+button.long-btn {
     width: 160px;
 }
 
-#center-container {
-    text-align: center;
-    position: relative;
-    top: 38%;
+input.purple-btn {
+    background-color: #AB47BC;
 }
 
+/* 中央寄せ */
+#center-container {
+    text-align: center;
+    position: absolute;
+    top: 38%;
+    width: 100%;
+}
+
+/* 文字 */
 #welcome {
-    font-size: 25.5px;
+    font-size: 30px;
     font-weight: bold;
     margin-bottom: 30px;
 }
