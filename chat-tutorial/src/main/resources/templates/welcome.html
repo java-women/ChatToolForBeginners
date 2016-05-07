@@ -11,6 +11,7 @@
     <div id="center-container">
         <form th:action="@{/logout}" method="post">
             <input type="submit" value="Logout"/>
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         </form>
         <hr />
         <div id="welcome" th:inline="text">ようこそ[[${#httpServletRequest.remoteUser}]]さん</div>
