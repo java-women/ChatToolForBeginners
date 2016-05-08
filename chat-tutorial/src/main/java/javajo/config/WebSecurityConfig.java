@@ -16,6 +16,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+            // CSRF無効
+            .csrf().disable()
             // 認証なしの設定
             .authorizeRequests()
                 .antMatchers("/", "/login", "/css/**", "/img/**").permitAll()
