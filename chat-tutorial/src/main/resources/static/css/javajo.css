@@ -8,7 +8,7 @@ body {
 }
 
 /*ヘッダー*/
-div#header {
+div#header, form#header {
     position: fixed;
     top: 10px;
     right: 30px;
@@ -36,7 +36,7 @@ div#inputArea {
 }
 
 /* ボタン */
-button.button {
+button.button, input.button {
     width: 100px;
     font-size: 15px;
     text-decoration: none;
@@ -99,7 +99,7 @@ button.button:disabled {
 }
 .center-img {
   position: absolute;
-  top: -30px;
+  top: -9%;
   right: 0;
   bottom: 0;
   left: 0;
