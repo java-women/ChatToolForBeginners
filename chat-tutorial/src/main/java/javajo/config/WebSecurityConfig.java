@@ -16,6 +16,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+            // CSRF無効
+            .csrf().disable()
             // 認証なしの設定
             .authorizeRequests()
                 .antMatchers("/", "/login", "/css/**", "/img/**").permitAll()
@@ -33,8 +35,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     /**
-     * TODO ログイン処理の方針を決めて修正する.
-     * ログインユーザ・パスワード設定.
+     * 認証情報を設定する.
      * @param auth
      * @throws Exception
      */
@@ -42,6 +43,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth
             .inMemoryAuthentication()
-                .withUser("user").password("password").roles("USER");
+                .withUser("admin").password("admin2016").roles("ADMIN")
+                .and()
+                .withUser("javajo").password("javajo2016").roles("USER");
     }
 }
