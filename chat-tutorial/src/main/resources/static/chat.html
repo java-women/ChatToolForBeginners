@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>チャットルーム</title>
+    <link rel="shortcut icon" href="./img/javajo_logo.png" >
+    <link rel="stylesheet" type="text/css" href="./css/javajo.css">
+</head>
+<body>
+<img src="../img/javajo_logo.png" class="transparent center-img">
+<div id="header">
+    <button id="disconnect" class="button" disabled="disabled">Disconnect</button>
+</div>
+<!--メッセージ -->
+<div id="response"></div>
+
+<div id="inputArea">
+<div>
+    <!--ログイン画面できたらなくなる予定  ここから -->
+    <input type="text" id="name" maxlength="8" placeholder="Your Name">
+    <button id="connect" class="button">Connect</button>
+    <!--ログイン画面できたらなくなる予定  ここまで -->  
+    <input type="text" id="message" placeholder="message">
+    <button id="send" class="button" disabled="disabled">Send</button>
+</div>
+</div>
+</body>
+<script src="./js/Stomp.js"></script>
+<script src="./js/javajo.js"></script>
+</html>
