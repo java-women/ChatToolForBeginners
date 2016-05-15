@@ -8,7 +8,7 @@
 </head>
 <body>
 <form th:action="@{/logout}" method="post" id="header">
-    <input type="submit" class="purple-btn button" value="Logout"/>
+    <input type="submit" class="button purple-btn" value="Logout"/>
 </form>
 <img src="./img/javajo_logo.png" class="transparent center-img" />
 
@@ -24,9 +24,7 @@
     <input type="text" id="message" placeholder="message" />
     <button id="send" class="button" disabled="disabled">Send</button>
 </div>
-    <div id="footer">
-        <button id="disconnect" class="button" disabled="disabled">Disconnect</button>
-    </div>
+<button id="disconnect" class="button footer" disabled="disabled">Disconnect</button>
 </div>
 </body>
 <script src="./js/Stomp.js"></script>

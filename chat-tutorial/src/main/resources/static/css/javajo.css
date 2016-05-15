@@ -8,9 +8,18 @@ body {
 }
 
 /*ヘッダー*/
-div#header, form#header {
+form#header {
     position: fixed;
     top: 10px;
+    right: 30px;
+    text-align: right;
+    width: 100%;
+}
+
+/*フッター*/
+button.footer {
+    position: fixed;
+    bottom: 10px;
     right: 30px;
     text-align: right;
     width: 100%;
@@ -51,6 +60,10 @@ button.button, input.button {
 button.button:disabled {
     background-color: #dda0dd;
     color: #f5f5f5;
+}
+/* ボタン(紫) */
+input.purple-btn {
+    background-color: #AB47BC;
 }
 
 /* チャットエリア */
