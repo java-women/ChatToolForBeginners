@@ -40,23 +40,7 @@ ChatStomp.prototype.onConnected = function (frame) {
  */
 ChatStomp.prototype.onSubscribeGreeting = function (message) {
     
-    // 名前:messageを分解
-    
-    var response = document.getElementById('response'); 
-    var p = document.createElement('p');
-    p.classList.add('talk-area');
-    response.appendChild(p);
-    
-    var name_span = document.createElement('span');
-    name_span.classList.add('talk-name');
-    name_span.appendChild(document.createTextNode(JSON.parse(message.body).name));
-    p.appendChild(name_span);
-    
-    var message_span = document.createElement('span');
-    message_span.classList.add('talk-content');
-
-    message_span.appendChild(document.createTextNode(JSON.parse(message.body).message));
-    p.appendChild(message_span);
+    // TODO メッセージを分解して表示する
     
     /** スクロールを一番下に **/
     var scrollHeight = document.getElementById('response').scrollHeight;
@@ -67,31 +51,21 @@ ChatStomp.prototype.onSubscribeGreeting = function (message) {
  * 宛先'/app/message'へのメッセージ送信処理
  */
 ChatStomp.prototype.sendName = function () {
-    var name = document.getElementById('name').value;
-    if (!name) name = EMPTY_NAME;
-    // 宛先'/app/message'へメッセージをjson形式で送信
-    var json_message = {name: name, message: document.getElementById('message').value};
-    this.stompClient.send("/app/message", {}, JSON.stringify(json_message));     
+    // TODO   
 };
 
 /**
 * メッセージ入力に応じた送信ボタン表示の切り替え
 */
 ChatStomp.prototype.setSendableStatus = function () {
-    var message = document.getElementById('message').value || '';
-    var connected = this.connectButton.disabled;
-    this.canSubmit(connected && message.length > 0);
+	// TODO
 };
 
 /**
  * 接続切断処理
  */
 ChatStomp.prototype.disconnect = function () {
-    if (this.stompClient) {
-        this.stompClient.disconnect();
-        this.stompClient = null;
-    }
-    this.setConnected(false);
+    // TODO
 };
 
 /**
