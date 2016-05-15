@@ -5,12 +5,22 @@ html {
 body {
     /*背景*/
     background-color: #FFE4E1;
+    margin: 0px;
 }
 
 /*ヘッダー*/
-div#header {
+form#header {
     position: fixed;
     top: 10px;
+    right: 30px;
+    text-align: right;
+    width: 100%;
+}
+
+/*フッター*/
+button.footer {
+    position: fixed;
+    bottom: 10px;
     right: 30px;
     text-align: right;
     width: 100%;
@@ -36,7 +46,7 @@ div#inputArea {
 }
 
 /* ボタン */
-button.button {
+button.button, input.button {
     width: 100px;
     font-size: 15px;
     text-decoration: none;
@@ -51,6 +61,10 @@ button.button {
 button.button:disabled {
     background-color: #dda0dd;
     color: #f5f5f5;
+}
+/* ボタン(紫) */
+input.purple-btn {
+    background-color: #AB47BC;
 }
 
 /* チャットエリア */
@@ -78,7 +92,7 @@ button.button:disabled {
     min-height: 50px;
     border-radius: 10px;
     background-color: #fff;
-    margin: 0 auto 0 80px;
+    margin: 0 auto 0 145px;
     padding: 16px;
 }
 .talk-area .talk-content:before {
@@ -99,7 +113,7 @@ button.button:disabled {
 }
 .center-img {
   position: absolute;
-  top: -30px;
+  top: -9%;
   right: 0;
   bottom: 0;
   left: 0;

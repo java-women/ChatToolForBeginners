@@ -1,19 +1,19 @@
-body {
-    background-image: none;
-}
-
-button.button {
+/* ボタン */
+button.long-btn {
     width: 160px;
 }
 
+/* 中央寄せ */
 #center-container {
     text-align: center;
-    position: relative;
+    position: absolute;
     top: 38%;
+    width: 100%;
 }
 
+/* 文字 */
 #welcome {
-    font-size: 25.5px;
+    font-size: 30px;
     font-weight: bold;
     margin-bottom: 30px;
 }
