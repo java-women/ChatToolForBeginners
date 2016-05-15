@@ -17,7 +17,7 @@ public class App {
         SpringApplication.run(App.class, args);
         LOGGER.info("\n----------------------------------------------------------\n"
                 + "Application is running!\n"
-                + "Access URL(local): \thttp://127.0.0.1:8080/chat.html\n"
+                + "Access URL(local): \thttp://127.0.0.1:8080/login\n"
                 + "----------------------------------------------------------");
     }
 }

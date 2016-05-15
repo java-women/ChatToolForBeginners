@@ -3,10 +3,6 @@ button.long-btn {
     width: 160px;
 }
 
-input.purple-btn {
-    background-color: #AB47BC;
-}
-
 /* 中央寄せ */
 #center-container {
     text-align: center;
