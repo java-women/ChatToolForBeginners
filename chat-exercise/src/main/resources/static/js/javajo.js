@@ -20,19 +20,18 @@ var ChatStomp = function () {
  * エンドポイントへの接続処理
  */
 ChatStomp.prototype.connect = function () {
-    var socket = new WebSocket('ws://' + location.host + '/endpoint'); // エンドポイントのURL
-    this.stompClient = Stomp.over(socket); // WebSocketを使ったStompクライアントを作成
-    this.stompClient.connect({}, this.onConnected.bind(this)); // エンドポイントに接続し、接続した際のコールバックを登録
+/**
+ * TODO:ハンズオン:エンドポイントへの接続処理を作成
+ * */
 };
 
 /**
  * エンドポイントへ接続したときの処理
  */
 ChatStomp.prototype.onConnected = function (frame) {
-    console.log('Connected: ' + frame);
-    // 宛先が'/topic/messages'のメッセージを購読し、コールバック処理を登録
-    this.stompClient.subscribe('/topic/messages', this.onSubscribeGreeting.bind(this));
-    this.setConnected(true);
+/**
+ * TODO:ハンズオン:エンドポイントへ接続したときの処理
+ * */
 };
 
 /**
@@ -40,32 +39,58 @@ ChatStomp.prototype.onConnected = function (frame) {
  */
 ChatStomp.prototype.onSubscribeGreeting = function (message) {
     
-    // TODO メッセージを分解して表示する
+    // 名前:messageを分解
+    
+    var response = document.getElementById('response'); 
+    var p = document.createElement('p');
+    p.classList.add('talk-area');
+    response.appendChild(p);
+    
+    var name_span = document.createElement('span');
+    name_span.classList.add('talk-name');
+    name_span.appendChild(document.createTextNode(JSON.parse(message.body).name));
+    p.appendChild(name_span);
+    
+    var message_span = document.createElement('span');
+    message_span.classList.add('talk-content');
+
+    message_span.appendChild(document.createTextNode(JSON.parse(message.body).message));
+    p.appendChild(message_span);
     
     /** スクロールを一番下に **/
     var scrollHeight = document.getElementById('response').scrollHeight;
     document.getElementById('response').scrollTop = scrollHeight;
 };
 
+
 /**
  * 宛先'/app/message'へのメッセージ送信処理
  */
 ChatStomp.prototype.sendName = function () {
-    // TODO   
+/**
+ * TODO:ハンズオン:メッセージ送信処理
+ *
+ * */   
 };
 
 /**
 * メッセージ入力に応じた送信ボタン表示の切り替え
 */
 ChatStomp.prototype.setSendableStatus = function () {
-	// TODO
+    var message = document.getElementById('message').value || '';
+    var connected = this.connectButton.disabled;
+    this.canSubmit(connected && message.length > 0);
 };
 
 /**
  * 接続切断処理
  */
 ChatStomp.prototype.disconnect = function () {
-    // TODO
+ /**
+ * TODO:ハンズオン:接続切断処理
+ *
+ * 
+ * */ 
 };
 
 /**
