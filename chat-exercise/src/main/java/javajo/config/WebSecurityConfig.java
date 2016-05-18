@@ -20,7 +20,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .csrf().disable()
             // 認証なしの設定
             .authorizeRequests()
-                .antMatchers("/", "/login", "/css/**", "/img/**").permitAll()
+                .antMatchers("/javajo", "/login", "/css/**", "/img/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
             // 認証設定
@@ -41,6 +41,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        // TODO ユーザを追加する
+        auth
+            .inMemoryAuthentication()
+                .withUser("admin").password("admin2016").roles("ADMIN")
+                .and()
+                .withUser("javajo").password("javajo2016").roles("USER");
     }
 }

@@ -69,7 +69,6 @@ ChatStomp.prototype.onSubscribeGreeting = function (message) {
 ChatStomp.prototype.sendName = function () {
     var name = document.getElementById('name').value;
     if (!name) name = EMPTY_NAME;
-    // 宛先'/app/message'へメッセージをjson形式で送信
     var json_message = {name: name, message: document.getElementById('message').value};
     this.stompClient.send("/app/message", {}, JSON.stringify(json_message));     
 };
