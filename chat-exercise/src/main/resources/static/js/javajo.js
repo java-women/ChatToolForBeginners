@@ -20,18 +20,19 @@ var ChatStomp = function () {
  * エンドポイントへの接続処理
  */
 ChatStomp.prototype.connect = function () {
-/**
- * TODO:ハンズオン:エンドポイントへの接続処理を作成
- * */
+    var socket = new WebSocket('ws://' + location.host + '/endpoint'); // エンドポイントのURL
+    this.stompClient = Stomp.over(socket); // WebSocketを使ったStompクライアントを作成
+    this.stompClient.connect({}, this.onConnected.bind(this)); // エンドポイントに接続し、接続した際のコールバックを登録
 };
 
 /**
  * エンドポイントへ接続したときの処理
  */
 ChatStomp.prototype.onConnected = function (frame) {
-/**
- * TODO:ハンズオン:エンドポイントへ接続したときの処理
- * */
+    console.log('Connected: ' + frame);
+    // 宛先が'/topic/messages'のメッセージを購読し、コールバック処理を登録
+    this.stompClient.subscribe('/topic/messages', this.onSubscribeGreeting.bind(this));
+    this.setConnected(true);
 };
 
 /**
@@ -62,15 +63,14 @@ ChatStomp.prototype.onSubscribeGreeting = function (message) {
     document.getElementById('response').scrollTop = scrollHeight;
 };
 
-
 /**
  * 宛先'/app/message'へのメッセージ送信処理
  */
 ChatStomp.prototype.sendName = function () {
-/**
- * TODO:ハンズオン:メッセージ送信処理
- *
- * */   
+    var name = document.getElementById('name').value;
+    if (!name) name = EMPTY_NAME;
+    var json_message = {name: name, message: document.getElementById('message').value};
+    this.stompClient.send("/app/message", {}, JSON.stringify(json_message));     
 };
 
 /**
@@ -86,11 +86,11 @@ ChatStomp.prototype.setSendableStatus = function () {
  * 接続切断処理
  */
 ChatStomp.prototype.disconnect = function () {
- /**
- * TODO:ハンズオン:接続切断処理
- *
- * 
- * */ 
+    if (this.stompClient) {
+        this.stompClient.disconnect();
+        this.stompClient = null;
+    }
+    this.setConnected(false);
 };
 
 /**

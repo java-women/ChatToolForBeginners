@@ -13,15 +13,17 @@
 <!--メッセージ -->
 <div id="response"></div>
 
-<!--
-
-
-TODO
-ハンズオン
-チャットのメッセージの入力エリア・送信ボタンの作成
-
-
--->
+<div id="inputArea">
+<div>
+    <!--ログイン画面できたらなくなる予定  ここから -->
+    <input type="text" id="name" maxlength="8" placeholder="Your Name" />
+    <button id="connect" class="button">Connect</button>
+    <!--ログイン画面できたらなくなる予定  ここまで -->  
+    <input type="text" id="message" placeholder="message" />
+    <button id="send" class="button" disabled="disabled">Send</button>
+</div>
+<button id="disconnect" class="button footer" disabled="disabled">Disconnect</button>
+</div>
 </body>
 <script src="./js/Stomp.js"></script>
 <script src="./js/javajo.js"></script>
