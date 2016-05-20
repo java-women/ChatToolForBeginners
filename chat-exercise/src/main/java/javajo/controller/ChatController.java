@@ -1,4 +1,4 @@
-package javajo.form.javajo.controller;
+package javajo.controller;
 
 import javajo.form.ChatForm;
 
